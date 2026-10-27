@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ndeye Maguette Diaw</title>
+<meta name="description" content="Portfolio de Ndeye Maguette Diaw, étudiante en systèmes, réseaux et sécurité : SOC, SIEM, infrastructures sécurisées.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : une colonne éditoriale, un schéma de la chaîne SOC en ouverture, puis expérience, projets, compétences. */
+:root {
+  --bg: #F2F5F6;
+  --surface: #FFFFFF;
+  --ink: #0F2230;
+  --muted: #4D6170;
+  --line: #D5DEE3;
+  --accent: #0B7A83;
+  --accent-soft: #DDEFF0;
+  --alert: #B5541B;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Roboto, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C161D; --surface: #13212B; --ink: #E4ECF0; --muted: #9AAEBB;
+    --line: #24384A; --accent: #4FC2CA; --accent-soft: #163640; --alert: #F0965C;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C161D; --surface: #13212B; --ink: #E4ECF0; --muted: #9AAEBB;
+  --line: #24384A; --accent: #4FC2CA; --accent-soft: #163640; --alert: #F0965C;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 16px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 900px; margin: 0 auto; padding-block: 56px 72px; display: flex; flex-direction: column; gap: 64px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+h2 { font-size: 1.5rem; font-weight: 700; }
+h3 { font-size: 1.1rem; font-weight: 700; }
+p { margin: 0; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.label {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--accent);
+}
+
+/* En-tête */
+header { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 32px; align-items: center; }
+.intro { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.photo { width: 100%; height: auto; max-width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: 10px; border: 1px solid var(--line); display: block; }
+.role { font-size: 1.15rem; color: var(--muted); max-width: 60ch; }
+.contact { display: flex; flex-wrap: wrap; gap: 10px 22px; font-family: var(--mono); font-size: 0.88rem; color: var(--muted); }
+.contact span, .contact a { display: inline-flex; align-items: center; gap: 6px; }
+.copy { font: inherit; font-size: 0.75rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 4px; padding: 1px 8px; cursor: pointer; }
+
+/* Schéma de la chaîne SOC */
+.pipeline { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px; display: flex; flex-direction: column; gap: 16px; }
+.flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; align-items: stretch; }
+.node { position: relative; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); display: flex; flex-direction: column; gap: 2px; margin-right: 22px; min-width: 0; }
+.node:last-child { margin-right: 0; }
+.node:not(:last-child)::after {
+  content: "→"; position: absolute; right: -19px; top: 50%; transform: translateY(-50%);
+  color: var(--accent); font-family: var(--mono); font-size: 1rem;
+}
+.node b { font-family: var(--display); font-size: 1rem; }
+.node small { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+.logline { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); overflow-x: auto; white-space: nowrap; padding-top: 4px; border-top: 1px dashed var(--line); }
+.logline em { font-style: normal; color: var(--alert); }
+
+/* Sections */
+section { display: flex; flex-direction: column; gap: 20px; }
+.section-head { display: flex; flex-direction: column; gap: 4px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+
+.job { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 20px; }
+.when { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 6px; }
+li::marker { color: var(--accent); }
+
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.project { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.project.featured { grid-column: 1 / -1; border-color: var(--accent); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-family: var(--mono); font-size: 0.74rem; background: var(--accent-soft); color: var(--ink); padding: 2px 8px; border-radius: 4px; }
+.project ul { font-size: 0.95rem; }
+
+.skills { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 12px 20px; }
+.skills dt { font-weight: 600; }
+.skills dd { margin: 0; color: var(--muted); }
+
+.edu { display: flex; flex-direction: column; gap: 10px; }
+.edu-row { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 20px; }
+
+footer { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
+
+@media (max-width: 680px) {
+  .wrap { padding-block: 36px 56px; gap: 48px; }
+  .flow { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .node { margin-right: 0; }
+  .node:not(:last-child)::after { content: "↓"; right: auto; left: 18px; top: auto; bottom: -21px; transform: none; }
+  .projects, .job, .skills, .edu-row { grid-template-columns: minmax(0, 1fr); }
+  header { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .photo { max-width: 200px; order: -1; }
+  .job, .edu-row { gap: 4px; }
+  .skills { gap: 2px; }
+  .skills dd { margin-bottom: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="intro">
+    <span class="label">Systèmes · Réseaux · Sécurité</span>
+    <h1>Ndeye Maguette Diaw</h1>
+    <p class="role">Étudiante en Licence 3 à l'IPROSI, orientée détection et réponse aux incidents. Je monte mes propres environnements SOC et réseau pour apprendre sur des cas concrets.</p>
+    <div class="contact">
+      <span>Dakar, Sénégal</span>
+      <span id="mail">ndeyemaguettediaw77@gmail.com <button class="copy" id="copy-mail" type="button">Copier</button></span>
+      <a href="https://www.linkedin.com/in/ndeye-maguette-diaw-352392306/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    </div>
+    <img class="photo" src="photo.jpg" alt="Ndeye Maguette Diaw devant son ordinateur portable" width="480" height="600">
+  </header>
+
+  <div class="pipeline" aria-label="Schéma de ma plateforme SOC">
+    <span class="label">Ma plateforme SOC en lab</span>
+    <div class="flow">
+      <div class="node"><b>Agents</b><small>postes et serveurs</small></div>
+      <div class="node"><b>Wazuh</b><small>SIEM / XDR · détection</small></div>
+      <div class="node"><b>TheHive</b><small>alertes → cas d'incident</small></div>
+      <div class="node"><b>Cortex</b><small>enrichissement IP, hash</small></div>
+    </div>
+    <div class="logline">wazuh-alert · <em>level 10</em> · échecs d'authentification multiples → TheHive case créé → Cortex : analyse de l'IP source</div>
+  </div>
+
+  <section>
+    <div class="section-head"><span class="label">Expérience</span><h2>Stage en entreprise</h2></div>
+    <div class="job">
+      <span class="when">Mai – août 2026</span>
+      <div style="display:flex;flex-direction:column;gap:10px;min-width:0">
+        <h3>Stagiaire Systèmes, Réseaux et Sécurité · Sesam Informatics, Dakar</h3>
+        <ul>
+          <li>Administration de l'infrastructure VMware vSphere (ESXi, vCenter) : création et gestion des machines virtuelles, snapshots, suivi des ressources</li>
+          <li>Déploiement et configuration de Kaspersky Security sur Linux, gestion des politiques de sécurité</li>
+          <li>Gestion des utilisateurs et des droits d'accès, maintenance préventive des équipements</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="label">Projets</span><h2>Labs personnels et académiques</h2></div>
+    <div class="projects">
+      <article class="project featured">
+        <h3>Plateforme SOC : SIEM, XDR et SOAR</h3>
+        <div class="tags"><span class="tag">Wazuh</span><span class="tag">Splunk</span><span class="tag">TheHive</span><span class="tag">Cortex</span></div>
+        <ul>
+          <li>Déploiement de Wazuh pour collecter et analyser les événements de sécurité des postes et serveurs</li>
+          <li>Collecte et recherche de logs dans Splunk, requêtes pour repérer les comportements suspects</li>
+          <li>Intégration Wazuh → TheHive : les alertes créent automatiquement des cas d'incident</li>
+          <li>Connexion de Cortex à TheHive pour enrichir les observables (IP, domaines, hash)</li>
+        </ul>
+      </article>
+      <article class="project">
+        <h3>Pare-feu pfSense, VLANs et portail captif</h3>
+        <div class="tags"><span class="tag">pfSense</span><span class="tag">VMware</span><span class="tag">NAT/PAT</span></div>
+        <ul>
+          <li>Segmentation du réseau en VLANs et règles de filtrage entre eux</li>
+          <li>Portail captif pour contrôler l'accès des utilisateurs</li>
+          <li>NAT/PAT pour la sortie vers Internet</li>
+        </ul>
+      </article>
+      <article class="project">
+        <h3>Authentification centralisée FreeRADIUS</h3>
+        <div class="tags"><span class="tag">FreeRADIUS</span><span class="tag">AAA</span><span class="tag">Linux</span></div>
+        <ul>
+          <li>Serveur FreeRADIUS (modèle AAA) pour les connexions réseau</li>
+          <li>Suivi des accès grâce aux logs d'authentification</li>
+        </ul>
+      </article>
+      <article class="project">
+        <h3>Infrastructure Windows et Linux</h3>
+        <div class="tags"><span class="tag">Active Directory</span><span class="tag">Ubuntu Server</span></div>
+        <ul>
+          <li>Windows Server : Active Directory, DHCP, DNS, utilisateurs et groupes</li>
+          <li>Ubuntu Server : DHCP, DNS, SSH, droits et permissions</li>
+        </ul>
+      </article>
+      <article class="project">
+        <h3>Tests de sécurité en environnement contrôlé</h3>
+        <div class="tags"><span class="tag">Nmap</span><span class="tag">DVWA</span><span class="tag">Gophish</span></div>
+        <ul>
+          <li>Scan et cartographie d'un réseau avec Nmap</li>
+          <li>Tests de failles web courantes sur DVWA</li>
+          <li>Simulation d'hameçonnage avec Gophish pour la sensibilisation</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="label">Compétences</span><h2>Outils et domaines</h2></div>
+    <dl class="skills">
+      <dt>SIEM / XDR / SOAR</dt><dd>Wazuh, Splunk, TheHive, Cortex, analyse de logs</dd>
+      <dt>Sécurité</dt><dd>pfSense, FortiGate, FreeRADIUS, OSSEC, Kaspersky</dd>
+      <dt>Réseaux</dt><dd>VLAN, routage statique et dynamique, NAT/PAT, ACL, Cisco</dd>
+      <dt>Systèmes</dt><dd>Windows Server (AD, DHCP, DNS), Ubuntu Server (DHCP, DNS, SSH)</dd>
+      <dt>Virtualisation</dt><dd>VMware vSphere (ESXi, vCenter), GNS3, Cisco Packet Tracer</dd>
+      <dt>Tests et audit</dt><dd>Nmap, DVWA, Gophish</dd>
+    </dl>
+  </section>
+
+  <section>
+    <div class="section-head"><span class="label">Formation</span><h2>Parcours</h2></div>
+    <div class="edu">
+      <div class="edu-row"><span class="when">Depuis nov. 2025</span><span><b>Licence 3 SESINE</b> · IPROSI, Dakar</span></div>
+      <div class="edu-row"><span class="when">2024 – 2025</span><span><b>Licence 2 SESINE</b> · IPROSI, Dakar</span></div>
+      <div class="edu-row"><span class="when">2023 – 2024</span><span><b>Licence 1 SESINE</b> · IPROSI, Dakar</span></div>
+      <div class="edu-row"><span class="when">2023</span><span><b>Baccalauréat</b> · Cours Privés Cherif Abdoulaye Thiaw Laye, Malika</span></div>
+    </div>
+  </section>
+
+  <footer>Langues : wolof, français, anglais technique · Recherche un stage en SOC ou en administration réseau et sécurité</footer>
+</div>
+
+<script>
+document.getElementById('copy-mail').addEventListener('click', function () {
+  var btn = this, txt = 'ndeyemaguettediaw77@gmail.com';
+  function done() { btn.textContent = 'Copié'; setTimeout(function () { btn.textContent = 'Copier'; }, 1500); }
+  try {
+    navigator.clipboard.writeText(txt).then(done, function () { sel(); });
+  } catch (e) { sel(); }
+  function sel() {
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('mail').firstChild);
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+});
+</script>
+</body>
+</html>
